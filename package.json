@@ -12,14 +12,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aandpbs/discord_destiny_app.git"
-  },
-  "keywords": [],
-  "bugs": {
-    "url": "https://github.com/aandpbs/discord_destiny_app/issues"
-  },
-  "homepage": "https://github.com/aandpbs/discord_destiny_app#readme"
+  "license": "ISC"
 }

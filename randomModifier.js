@@ -7,6 +7,7 @@ const pickModifier = function (numberOfModifiers) {
             NAME: 'Primary',
             MODIFIERS: [
                 'Scout Rifle',
+                'Sidearm',
                 'Sniper',
                 'SMG',
                 'Hand Canon',
@@ -22,6 +23,7 @@ const pickModifier = function (numberOfModifiers) {
             NAME: 'Special',
             MODIFIERS: [
                 'Scout Rifle',
+                'Sidearm',
                 'Sniper',
                 'SMG',
                 'Hand Canon',
