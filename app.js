@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Discord = require('discord.js');
 const randomTeams = require('./randomTeams.js');
-const randomActivity = require('./randomActivity.js');
+const randomize = require('./randomActivity.js');
 const randomModifier = require('./randomModifier.js');
 
 const bot = new Discord.Client();
@@ -9,6 +9,8 @@ const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 
 bot.login(TOKEN);
+
+//TODO change what's logged when the bot is logged in
 
 bot.on('ready', () => {
     console.info(`Logged in as ${bot.user.tag}!`);
@@ -31,13 +33,15 @@ bot.on('message', msg => {
         msg.channel.send(emoji);
     }
 
-    if (msg.content === '!activity') {
+    if (msg.content.startsWith('!random')) {
 
-        const activity = randomActivity();
+        var randomThing = msg.content.replace('!random ', '');
 
-        msg.channel.send(activity);
+        msg.channel.send(randomize(randomThing));
 
     } else if (msg.content.startsWith('!players')) {
+
+        //TODO Move all logic above const teams in to the randomTeams module
 
         const players = msg.mentions.users.array();
 
@@ -57,8 +61,9 @@ bot.on('message', msg => {
         msg.channel.send('Second Team: ' + secondTeam);
     } else if (msg.content === '!help') {
 
-        const helpMsg = 'To have an activity chosen at random, enter !activity.' +
-            ' to have a modifier for an activity chosen at random, enter !modifier.' +
+        const helpMsg = 'To have an activity or map chosen at random, enter !random followed by either activity (for a random activity)' +
+            ' or map for a random map. For example: !random activity will result in a random activity be chosen.' +
+            ' To have a modifier for an activity chosen at random, enter !modifier.' +
             ' To have up to 4 different random modifiers chosen, enter !modifier + the number of modifiers you want.' +
             ' For example: !modifier 3 will result in 3 random modifiers being chosen.' +
             ' To have a group of players split up in to two random teams, enter !players followed by' +
@@ -89,5 +94,11 @@ bot.on('message', msg => {
     } else if (msg.content === '!nahb') {
 
         msg.channel.send('Go fuck yourself');
+    } else if (msg.content.startsWith('!shirts')) {
+
+        msg.channel.send('Off');
+    } else if (msg.content.startsWith('!pants')) {
+
+        msg.channel.send('Off');
     }
 });
