@@ -1,4 +1,33 @@
-const pickActivity = function () {
+const pickActivity = function (randomThing) {
+
+    var maps = [
+        "Altar of Flame",
+        "Convergence",
+        "Citadel",
+        "Distant Shore",
+        "Emperor's Respite",
+        "Endless Vale",
+        "Eternity",
+        "Firebase Echo",
+        "Fragment",
+        "Gambler's Ruin",
+        "Javelin-4",
+        "Legion's Gulch",
+        "Midtown",
+        "Retribution",
+        "Rusted Lands",
+        "The Dead Cliffs",
+        "The Fortress",
+        "Twlight Gap",
+        "Vostok",
+        "Widow's Court",
+        "Wormhaven",
+        "Pacifica",
+        "Radiant Cliffs",
+        "The Burnout",
+        "Solitude",
+        "Meltdown",
+    ];
 
     var activities = [
         'Private Gambit Matches',
@@ -17,11 +46,21 @@ const pickActivity = function () {
         'PvP Tournament'
     ];
 
-    var max = activities.length;
+    var arr = '';
+
+    if (randomThing === 'map') {
+
+        arr = maps;
+    } else if (randomThing === 'activity') {
+
+        arr = activities
+    }
+
+    var max = arr.length;
 
     var arrayIndex = Math.floor(Math.random() * Math.floor(max));
 
-    return activities[arrayIndex];
+    return arr[arrayIndex];
 }
 
 module.exports = pickActivity
