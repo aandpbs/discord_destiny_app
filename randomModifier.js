@@ -6,51 +6,129 @@ const pickModifier = function (numberOfModifiers) {
         {
             NAME: 'Primary',
             MODIFIERS: [
-                'Scout Rifle',
-                'Sidearm',
-                'Sniper',
-                'SMG',
-                'Hand Canon',
-                'Auto Rile',
-                'Bow',
-                'Grenade Launcher',
-                'Pulse Rifle',
-                'Shotgun'
+                {
+                    name: 'Scout Rifle',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Sniper',
+                    ammoType: 'Special'
+                },
+                {
+                    name: 'SMG',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Hand Canon',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Auto Rile',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Sidearm',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Bow',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Pulse Rifle',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Shotgun',
+                    ammoType: 'Special'
+                }
             ],
             MESSAGE: 'Primary weapon must be '
         },
         {
             NAME: 'Special',
             MODIFIERS: [
-                'Scout Rifle',
-                'Sidearm',
-                'Sniper',
-                'SMG',
-                'Hand Canon',
-                'Auto Rile',
-                'Bow',
-                'Grenade Launcher',
-                'Pulse Rifle',
-                'Shotgun'
+                {
+                    name: 'Scout Rifle',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Sniper',
+                    ammoType: 'Special'
+                },
+                {
+                    name: 'SMG',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Hand Canon',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Auto Rile',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Sidearm',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Bow',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Pulse Rifle',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Shotgun',
+                    ammoType: 'Special'
+                },
+                {
+                    name: 'Grenade Launcher',
+                    ammoType: 'Primary'
+                },
+                {
+                    name: 'Fusion Rifle',
+                    ammoType: 'Special'
+                },
             ],
             MESSAGE: 'Special weapon must be '
         },
         {
             NAME: 'Heavy',
             MODIFIERS: [
-                'Sword',
-                'Rocket Launcher',
-                'Grenade Launcher',
-                'Sniper'
+                {
+                    name: 'Sword',
+                    ammoType: 'Heavy'
+                },
+                {
+                    name: 'Rocket Launcher',
+                    ammoType: 'Heavy'
+                },
+                {
+                    name: 'Grenade Launcher',
+                    ammoType: 'Heavy'
+                },
+                {
+                    name: 'Machine Gun',
+                    ammoType: 'Heavy'
+                }
             ],
             MESSAGE: 'Heavy weapon must be '
         },
         {
             NAME: 'Subclass',
             MODIFIERS: [
-                'Solar',
-                'Void',
-                'Arc',
+                {
+                    name: 'Solar'
+                },
+                {
+                    name: 'Void'
+                },
+                {
+                    name: 'Arc'
+                },
             ],
             MESSAGE: 'Subclass must be '
         },
@@ -73,6 +151,8 @@ const pickModifier = function (numberOfModifiers) {
     var max = '';
     var modifier = '';
 
+    var listOfAmmoTypes = [];
+
     for (var i = 1; i <= numberOfModifiers; i++) {
 
         if (Boolean(modifiers.length)) {
@@ -83,10 +163,25 @@ const pickModifier = function (numberOfModifiers) {
 
             arrayIndex = Math.floor(Math.random() * Math.floor(max));
 
+            if (Boolean(listOfAmmoTypes.length)) {
+
+                for (var j = 0; j < listOfAmmoTypes.length; j++) {
+
+                    var isCurrentAmmoSpecial = modifiers[modifierIndex].MODIFIERS[arrayIndex].ammoType === 'Special';
+                    var isExistingSpecial = listOfAmmoTypes[j] === 'Special';
+
+                    if (isCurrentAmmoSpecial === isExistingSpecial) {
+
+                        arrayIndex = Math.floor(Math.random() * Math.floor(max));
+                    }
+                }
+            }
+
             modifier = modifiers[modifierIndex].MESSAGE +
-                modifiers[modifierIndex].MODIFIERS[arrayIndex];
+                modifiers[modifierIndex].MODIFIERS[arrayIndex].name;
 
             listOfModifiers.push(modifier);
+            listOfAmmoTypes.push(modifiers[modifierIndex].MODIFIERS[arrayIndex].ammoType);
 
             modifiers.splice(modifierIndex, 1);
 
